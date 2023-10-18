@@ -1,0 +1,174 @@
+openapi: "3.0.0"
+info:
+  title: Order Manager
+  description: Simple Order Manager System
+  version: 0.1.0
+
+paths:
+  /item/{id}:
+    get:
+      summary: Get Item
+      operationId: getItemById
+      tags:
+        - item
+      parameters:
+        - name: id
+          in: path
+          description: Item ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+    put:
+      summary: Update Item
+      operationId: updateItem
+      tags:
+        - item
+      parameters:
+        - name: id
+          in: path
+          description: Item ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Object for update Item request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+    delete:
+      summary: Get Item
+      operationId: deleteItemById
+      tags:
+        - item
+      parameters:
+        - name: id
+          in: path
+          description: Item ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /items:
+    get:
+      summary: List items
+      operationId: listItems
+      tags:
+        - item
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+
+  /item:
+    post:
+      summary: Post Item
+      operationId: createItem
+      tags:
+        - item
+      requestBody:
+        description: Object for Post Item request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order/{id}:
+    get:
+      summary: Get Order
+      operationId: getOrderById
+      tags:
+        - order
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Order:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+
+    Item:
+      type: object
+      required:
+        - name
+        - quantity
+      properties:
+        name:
+          type: string
+        quantity:
+          type: integer
+
+    ItemRequest:
+      type: object
+      required:
+        - name
+        - quantity
+      properties:
+        quantity:
+          type: integer
+        name:
+          type: string
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
