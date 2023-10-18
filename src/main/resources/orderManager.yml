@@ -272,6 +272,56 @@ paths:
               schema:
                 type: string
 
+  /stock/movement/order/{orderId}/status/{status}:
+    post:
+      summary: Create New Stock Movement Status By Order ID
+      operationId: createStockMovementNewStatusByOrderId
+      tags:
+        - stockMovement
+      parameters:
+        - name: status
+          in: path
+          description: Stock Movement New Status
+          required: true
+          schema:
+            type: integer
+        - name: orderId
+          in: path
+          description: Order Id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockMovement'
+
+  /stock/movement/order/{orderId}:
+    get:
+      summary: Get Stock Movement By Order ID
+      operationId: getStockMovementByOrderId
+      tags:
+        - stockMovement
+      parameters:
+        - name: orderId
+          in: path
+          description: Order Id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StockMovement'
+
   /stock/movement:
     post:
       summary: Post Stock Movement
@@ -393,12 +443,9 @@ components:
       type: object
       required:
         - order
-        - quantity
         - movementStatus
       properties:
         order:
-          type: integer
-        quantity:
           type: integer
         movementStatus:
           type: integer

@@ -17,4 +17,6 @@ public interface OrderService {
 
     List<Order> listOrders();
 
+    void closeOrder(Integer orderId);
+
 }

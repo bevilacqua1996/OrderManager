@@ -17,4 +17,8 @@ public interface StockMovementService {
 
     List<StockMovement> listStockMovements();
 
+    StockMovement createStockMovementNewStatusByOrderId(Integer orderId, Integer status);
+
+    List<StockMovement> getStockMovementByOrderId(Integer orderId);
+
 }

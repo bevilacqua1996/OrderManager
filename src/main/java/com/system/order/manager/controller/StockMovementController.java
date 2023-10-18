@@ -43,4 +43,14 @@ public class StockMovementController implements StockApi {
     public ResponseEntity<List<StockMovement>> listStockMovements() {
         return new ResponseEntity<>(stockMovementService.listStockMovements(), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<StockMovement> createStockMovementNewStatusByOrderId(Integer status, Integer orderId) {
+        return new ResponseEntity<>(stockMovementService.createStockMovementNewStatusByOrderId(orderId, status), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<StockMovement>> getStockMovementByOrderId(Integer orderId) {
+        return new ResponseEntity<>(stockMovementService.getStockMovementByOrderId(orderId), HttpStatus.OK);
+    }
 }

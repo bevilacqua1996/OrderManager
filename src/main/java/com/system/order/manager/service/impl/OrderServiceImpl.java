@@ -133,4 +133,15 @@ public class OrderServiceImpl implements OrderService {
 
         return orderList;
     }
+
+    @Override
+    public void closeOrder(Integer orderId) {
+        OrderEntity orderEntity = orderRepository.findById(orderId).orElseThrow(NoDataFoundException::new);
+
+        orderEntity.setOrderStatus(OrderStatusEnum.ofCodeNumber(2));
+
+        orderRepository.save(orderEntity);
+    }
+
+
 }
