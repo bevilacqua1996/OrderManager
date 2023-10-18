@@ -28,13 +28,13 @@ public class ItemController implements ItemApi {
 
     @Override
     public ResponseEntity<String> deleteItemById(Integer id) {
-        itemService.deleteItem(id);
+        itemService.deleteItemById(id);
         return new ResponseEntity<>("Item Deleted!", HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Item> updateItem(Integer id, ItemRequest itemRequest) {
-        Item item = itemService.updateItem(id, itemRequest);
+    public ResponseEntity<Item> updateItemById(Integer id, ItemRequest itemRequest) {
+        Item item = itemService.updateItemById(id, itemRequest);
         return new ResponseEntity<>(item, HttpStatus.OK);
     }
 

@@ -27,7 +27,7 @@ paths:
                 $ref: '#/components/schemas/Item'
     put:
       summary: Update Item
-      operationId: updateItem
+      operationId: updateItemById
       tags:
         - item
       parameters:
@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Item'
     delete:
-      summary: Get Item
+      summary: Delete Item
       operationId: deleteItemById
       tags:
         - item
@@ -126,17 +126,228 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+    put:
+      summary: Update Order
+      operationId: updateOrderById
+      tags:
+        - order
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Object for update Order request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    delete:
+      summary: Delete Order
+      operationId: deleteOrderById
+      tags:
+        - order
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /orders:
+    get:
+      summary: List Orders
+      operationId: listOrders
+      tags:
+        - order
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+
+  /order:
+    post:
+      summary: Post Order
+      operationId: createOrder
+      tags:
+        - order
+      requestBody:
+        description: Object for Post Order request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /stock/movement/{id}:
+    get:
+      summary: Get Stock Movement
+      operationId: getStockMovementById
+      tags:
+        - stockMovement
+      parameters:
+        - name: id
+          in: path
+          description: Stock Movement ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockMovement'
+    put:
+      summary: Update Stock Movement
+      operationId: updateStockMovementById
+      tags:
+        - stockMovement
+      parameters:
+        - name: id
+          in: path
+          description: Stock Movement ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Object for update Stock Movement request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockMovementRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockMovement'
+    delete:
+      summary: Delete Stock Movement
+      operationId: deleteStockMovementById
+      tags:
+        - stockMovement
+      parameters:
+        - name: id
+          in: path
+          description: Stock Movement ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /stock/movement:
+    post:
+      summary: Post Stock Movement
+      operationId: createStockMovement
+      tags:
+        - stockMovement
+      requestBody:
+        description: Object for Post Stock Movement request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockMovementRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /stock/movements:
+    get:
+      summary: List Stock Movements
+      operationId: listStockMovements
+      tags:
+        - stockMovement
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StockMovement'
+
 components:
   schemas:
+
+    StockMovement:
+      type: object
+      required:
+        - creationDate
+        - order
+        - quantity
+        - movementStatus
+      properties:
+        creationDate:
+          type: string
+          format: date
+        order:
+          type: integer
+        quantity:
+          type: integer
+        movementStatus:
+          type: string
+
     Order:
       type: object
       required:
-        - id
-        - name
+        - creationDate
+        - item
+        - quantity
+        - user
+        - orderStatus
       properties:
-        id:
+        creationDate:
+          type: string
+          format: date
+        item:
+          type: string
+        quantity:
           type: integer
-        name:
+        user:
+          type: string
+        orderStatus:
           type: string
 
     Item:
@@ -160,6 +371,37 @@ components:
           type: integer
         name:
           type: string
+
+    OrderRequest:
+      type: object
+      required:
+        - item
+        - quantity
+        - userEmail
+        - orderStatus
+      properties:
+        item:
+          type: string
+        quantity:
+          type: integer
+        userEmail:
+          type: string
+        orderStatus:
+          type: integer
+
+    StockMovementRequest:
+      type: object
+      required:
+        - order
+        - quantity
+        - movementStatus
+      properties:
+        order:
+          type: integer
+        quantity:
+          type: integer
+        movementStatus:
+          type: integer
 
     Error:
       type: object

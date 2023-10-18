@@ -1,5 +1,6 @@
 package com.system.order.manager.service.impl;
 
+import com.system.order.manager.exception.NoDataFoundException;
 import com.system.order.manager.model.Item;
 import com.system.order.manager.model.ItemEntity;
 import com.system.order.manager.model.ItemRequest;
@@ -19,7 +20,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item getItemById(Integer id) {
-        ItemEntity itemEntity = itemRepository.findById(id).get();
+        ItemEntity itemEntity = itemRepository.findById(id).orElseThrow(NoDataFoundException::new);
 
         Item item = new Item();
         item.setName(itemEntity.getName());
@@ -40,14 +41,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void deleteItem(Integer id) {
+    public void deleteItemById(Integer id) {
         itemRepository.deleteById(id);
     }
 
     @Override
-    public Item updateItem(Integer id, ItemRequest itemRequest) {
+    public Item updateItemById(Integer id, ItemRequest itemRequest) {
 
-        ItemEntity itemEntity = itemRepository.findById(id).get();
+        ItemEntity itemEntity = itemRepository.findById(id).orElseThrow(NoDataFoundException::new);
 
         itemEntity.setName(itemRequest.getName());
         itemEntity.setQuantity(itemRequest.getQuantity());

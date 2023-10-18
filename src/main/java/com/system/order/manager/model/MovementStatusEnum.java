@@ -1,5 +1,7 @@
 package com.system.order.manager.model;
 
+import com.system.order.manager.exception.NoDataFoundException;
+
 public enum MovementStatusEnum {
 
     PACKING(1, "packing"),
@@ -28,7 +30,7 @@ public enum MovementStatusEnum {
                 return codeEnum;
             }
         }
-        throw new IllegalArgumentException( "Movement Status code not found: " + String.valueOf(code) );
+        throw new NoDataFoundException( "Movement Status code not found: " + String.valueOf(code) );
     }
 
     public static MovementStatusEnum ofStatus(String status) {
@@ -37,6 +39,6 @@ public enum MovementStatusEnum {
                 return codeEnum;
             }
         }
-        throw new IllegalArgumentException( "Movement Status not found: " + String.valueOf(status) );
+        throw new NoDataFoundException( "Movement Status not found: " + String.valueOf(status) );
     }
 }

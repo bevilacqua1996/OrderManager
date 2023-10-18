@@ -11,9 +11,9 @@ public interface ItemService {
 
     void createItem(ItemRequest itemRequest);
 
-    void deleteItem(Integer id);
+    void deleteItemById(Integer id);
 
-    Item updateItem(Integer id, ItemRequest itemRequest);
+    Item updateItemById(Integer id, ItemRequest itemRequest);
 
     List<Item> listItems();
 

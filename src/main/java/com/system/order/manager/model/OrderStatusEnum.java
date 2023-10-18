@@ -1,5 +1,7 @@
 package com.system.order.manager.model;
 
+import com.system.order.manager.exception.NoDataFoundException;
+
 public enum OrderStatusEnum {
 
     OPEN(1, "open"),
@@ -27,7 +29,7 @@ public enum OrderStatusEnum {
                 return codeEnum;
             }
         }
-        throw new IllegalArgumentException( "Order Status code not found: " + String.valueOf(code) );
+        throw new NoDataFoundException( "Order Status code not found: " + String.valueOf(code) );
     }
 
     public static OrderStatusEnum ofStatus(String status) {
@@ -36,6 +38,6 @@ public enum OrderStatusEnum {
                 return codeEnum;
             }
         }
-        throw new IllegalArgumentException( "Order Status not found: " + String.valueOf(status) );
+        throw new NoDataFoundException( "Order Status not found: " + String.valueOf(status) );
     }
 }
