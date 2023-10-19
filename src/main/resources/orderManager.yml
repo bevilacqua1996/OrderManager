@@ -1,0 +1,574 @@
+openapi: "3.0.0"
+info:
+  title: Order Manager
+  description: Simple Order Manager System
+  version: 0.1.0
+
+paths:
+  /order-system/item/{id}:
+    get:
+      summary: Get Item
+      operationId: getItemById
+      tags:
+        - item
+      parameters:
+        - name: id
+          in: path
+          description: Item ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+    put:
+      summary: Update Item
+      operationId: updateItemById
+      tags:
+        - item
+      parameters:
+        - name: id
+          in: path
+          description: Item ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Object for update Item request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+    delete:
+      summary: Delete Item
+      operationId: deleteItemById
+      tags:
+        - item
+      parameters:
+        - name: id
+          in: path
+          description: Item ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order-system/items:
+    get:
+      summary: List items
+      operationId: listItems
+      tags:
+        - item
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+
+  /order-system/item:
+    post:
+      summary: Post Item
+      operationId: createItem
+      tags:
+        - item
+      requestBody:
+        description: Object for Post Item request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order-system/order/{id}:
+    get:
+      summary: Get Order
+      operationId: getOrderById
+      tags:
+        - order
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    put:
+      summary: Update Order
+      operationId: updateOrderById
+      tags:
+        - order
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Object for update Order request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    delete:
+      summary: Delete Order
+      operationId: deleteOrderById
+      tags:
+        - order
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order-system/orders:
+    get:
+      summary: List Orders
+      operationId: listOrders
+      tags:
+        - order
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+
+  /order-system/order:
+    post:
+      summary: Post Order
+      operationId: createOrder
+      tags:
+        - order
+      requestBody:
+        description: Object for Post Order request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order-system/stock/movement/{id}:
+    get:
+      summary: Get Stock Movement
+      operationId: getStockMovementById
+      tags:
+        - stockMovement
+      parameters:
+        - name: id
+          in: path
+          description: Stock Movement ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockMovement'
+    put:
+      summary: Update Stock Movement
+      operationId: updateStockMovementById
+      tags:
+        - stockMovement
+      parameters:
+        - name: id
+          in: path
+          description: Stock Movement ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Object for update Stock Movement request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockMovementRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockMovement'
+    delete:
+      summary: Delete Stock Movement
+      operationId: deleteStockMovementById
+      tags:
+        - stockMovement
+      parameters:
+        - name: id
+          in: path
+          description: Stock Movement ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order-system/stock/movement/order/{orderId}/status/{status}:
+    post:
+      summary: Create New Stock Movement Status By Order ID
+      operationId: createStockMovementNewStatusByOrderId
+      tags:
+        - stockMovement
+      parameters:
+        - name: status
+          in: path
+          description: Stock Movement New Status
+          required: true
+          schema:
+            type: integer
+        - name: orderId
+          in: path
+          description: Order Id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockMovement'
+
+  /order-system/stock/movement/order/{orderId}:
+    get:
+      summary: Get Stock Movement By Order ID
+      operationId: getStockMovementByOrderId
+      tags:
+        - stockMovement
+      parameters:
+        - name: orderId
+          in: path
+          description: Order Id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StockMovement'
+
+  /order-system/stock/movement:
+    post:
+      summary: Post Stock Movement
+      operationId: createStockMovement
+      tags:
+        - stockMovement
+      requestBody:
+        description: Object for Post Stock Movement request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockMovementRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order-system/stock/movements:
+    get:
+      summary: List Stock Movements
+      operationId: listStockMovements
+      tags:
+        - stockMovement
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StockMovement'
+
+  /order-system/user/{id}:
+    get:
+      summary: Get User
+      operationId: getUserById
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      summary: Update User
+      operationId: updateUserById
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Object for update User request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      summary: Delete User
+      operationId: deleteUserById
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order-system/user:
+    post:
+      summary: Post User
+      operationId: createUser
+      tags:
+        - user
+      requestBody:
+        description: Object for Post User request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /order-system/users:
+    get:
+      summary: List all Users
+      operationId: listUsers
+      tags:
+        - user
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+components:
+  schemas:
+
+    User:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+
+    StockMovement:
+      type: object
+      required:
+        - creationDate
+        - order
+        - quantity
+        - movementStatus
+      properties:
+        creationDate:
+          type: string
+          format: date
+        order:
+          type: integer
+        quantity:
+          type: integer
+        movementStatus:
+          type: string
+
+    Order:
+      type: object
+      required:
+        - creationDate
+        - item
+        - quantity
+        - user
+        - orderStatus
+      properties:
+        creationDate:
+          type: string
+          format: date
+        item:
+          type: string
+        quantity:
+          type: integer
+        user:
+          type: string
+        orderStatus:
+          type: string
+
+    Item:
+      type: object
+      required:
+        - name
+        - quantity
+      properties:
+        name:
+          type: string
+        quantity:
+          type: integer
+
+    ItemRequest:
+      type: object
+      required:
+        - name
+        - quantity
+      properties:
+        quantity:
+          type: integer
+        name:
+          type: string
+
+    OrderRequest:
+      type: object
+      required:
+        - item
+        - quantity
+        - userEmail
+        - orderStatus
+      properties:
+        item:
+          type: string
+        quantity:
+          type: integer
+        userEmail:
+          type: string
+        orderStatus:
+          type: integer
+
+    StockMovementRequest:
+      type: object
+      required:
+        - order
+        - movementStatus
+      properties:
+        order:
+          type: integer
+        movementStatus:
+          type: integer
+
+    UserRequest:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
