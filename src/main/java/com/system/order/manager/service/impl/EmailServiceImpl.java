@@ -25,6 +25,7 @@ public class EmailServiceImpl implements EmailService {
             message.setSubject("Stock Movement Status");
             message.setText(text);
             emailSender.send(message);
+            logger.info("Email notification sent!");
         } catch (Exception ex) {
             logger.error("Error on send email notification: " + ex.getMessage());
         }

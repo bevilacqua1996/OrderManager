@@ -116,7 +116,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteOrderById(Integer id) {
         orderRepository.deleteById(id);
-        logger.warn("ORDER CREATED: Order ID " + id);
+        logger.warn("ORDER DELETED: Order ID " + id);
     }
 
     @Override
