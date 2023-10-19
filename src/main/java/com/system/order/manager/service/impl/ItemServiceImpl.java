@@ -6,6 +6,8 @@ import com.system.order.manager.model.ItemEntity;
 import com.system.order.manager.model.ItemRequest;
 import com.system.order.manager.repository.ItemRepository;
 import com.system.order.manager.service.ItemService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
 
     @Override
     public Item getItemById(Integer id) {
@@ -38,11 +42,14 @@ public class ItemServiceImpl implements ItemService {
 
         itemRepository.save(itemEntity);
 
+        logger.info("ITEM CREATED: " + itemEntity.getName());
+
     }
 
     @Override
     public void deleteItemById(Integer id) {
         itemRepository.deleteById(id);
+        logger.warn("ITEM DELETED: Item ID " + id);
     }
 
     @Override
@@ -54,6 +61,8 @@ public class ItemServiceImpl implements ItemService {
         itemEntity.setQuantity(itemRequest.getQuantity());
 
         itemRepository.save(itemEntity);
+
+        logger.info("ITEM UPDATED: " + itemEntity.getName());
 
         Item item = new Item();
 

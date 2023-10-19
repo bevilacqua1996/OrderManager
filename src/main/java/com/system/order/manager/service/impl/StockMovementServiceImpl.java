@@ -8,6 +8,8 @@ import com.system.order.manager.repository.OrderRepository;
 import com.system.order.manager.repository.StockMovementRepository;
 import com.system.order.manager.service.OrderService;
 import com.system.order.manager.service.StockMovementService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,8 @@ public class StockMovementServiceImpl implements StockMovementService {
 
     @Autowired
     private OrderService orderService;
+
+    Logger logger = LoggerFactory.getLogger(StockMovementServiceImpl.class);
 
     @Override
     public StockMovement getStockMovementById(Integer id) {
@@ -65,6 +69,8 @@ public class StockMovementServiceImpl implements StockMovementService {
 
         stockMovementRepository.save(stockMovementEntity);
 
+        logger.info("STOCK MOVEMENT UPDATED: Stock Movement Status " + stockMovementEntity.getMovementStatus().getStatus() + " for Order ID " + orderEntity.getOrderId());
+
         StockMovement stockMovement = new StockMovement();
 
         stockMovement.setOrder(stockMovementEntity.getOrder().getOrderId());
@@ -80,6 +86,7 @@ public class StockMovementServiceImpl implements StockMovementService {
     @Override
     public void deleteStockMovementById(Integer id) {
         stockMovementRepository.deleteById(id);
+        logger.warn("STOCK MOVEMENT DELETED: Stock Movement ID " + id);
     }
 
     @Override
@@ -98,6 +105,8 @@ public class StockMovementServiceImpl implements StockMovementService {
         stockMovementEntity.setCreationDate(Date.from(Instant.now()));
 
         stockMovementRepository.save(stockMovementEntity);
+
+        logger.info("STOCK MOVEMENT CREATED: Stock Movement Status " + stockMovementEntity.getMovementStatus().getStatus() + " for Order ID " + orderEntity.getOrderId());
     }
 
     @Override
@@ -137,6 +146,8 @@ public class StockMovementServiceImpl implements StockMovementService {
         stockMovementEntity.setCreationDate(Date.from(Instant.now()));
 
         stockMovementRepository.save(stockMovementEntity);
+
+        logger.info("STOCK MOVEMENT UPDATED: Stock Movement Status " + stockMovementEntity.getMovementStatus().getStatus() + " for Order ID " + orderEntity.getOrderId());
 
         if(status==3) {
             orderService.closeOrder(stockMovementEntity.getOrder().getOrderId());

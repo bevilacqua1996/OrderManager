@@ -6,6 +6,7 @@ import com.system.order.manager.model.*;
 import com.system.order.manager.repository.ItemRepository;
 import com.system.order.manager.repository.OrderRepository;
 import com.system.order.manager.repository.UserRepository;
+import com.system.order.manager.service.EmailService;
 import com.system.order.manager.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +31,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
 
@@ -52,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
 
         orderRepository.save(orderEntity);
 
-        logger.info("ORDER CREATED");
+        logger.info("ORDER CREATED: Order ID " + orderEntity.getOrderId());
 
     }
 
@@ -93,6 +97,8 @@ public class OrderServiceImpl implements OrderService {
 
         orderRepository.save(orderEntity);
 
+        logger.info("ORDER UPDATED: Order ID " + orderEntity.getOrderId());
+
         Order order = new Order();
 
         order.setOrderStatus(orderEntity.getOrderStatus().getStatus());
@@ -110,6 +116,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteOrderById(Integer id) {
         orderRepository.deleteById(id);
+        logger.warn("ORDER CREATED: Order ID " + id);
     }
 
     @Override
@@ -141,6 +148,10 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setOrderStatus(OrderStatusEnum.ofCodeNumber(2));
 
         orderRepository.save(orderEntity);
+
+        logger.info("ORDER CLOSED: Order ID " + orderEntity.getOrderId());
+
+        emailService.sendEmail(orderEntity.getUser().getEmail(), "Notification: ORDER CLOSED");
     }
 
 

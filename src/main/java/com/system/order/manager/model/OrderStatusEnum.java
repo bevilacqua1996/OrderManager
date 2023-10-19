@@ -4,8 +4,8 @@ import com.system.order.manager.exception.NoDataFoundException;
 
 public enum OrderStatusEnum {
 
-    OPEN(1, "open"),
-    CLOSED(2, "closed");
+    OPEN(1, "OPEN"),
+    CLOSED(2, "CLOSED");
 
     private int code;
     private String status;

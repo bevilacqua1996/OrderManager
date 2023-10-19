@@ -1,5 +1,7 @@
 package com.system.order.manager.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,6 +16,8 @@ import java.util.Map;
 @ControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
+    Logger logger = LoggerFactory.getLogger(ControllerAdvisor.class);
+
     @ExceptionHandler(InsufficientItemInStock.class)
     public ResponseEntity<Object> handleInsufficientItemInStockException(
             InsufficientItemInStock ex, WebRequest request) {
@@ -21,6 +25,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
+
+        logger.error(ex.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
@@ -33,6 +39,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
 
+        logger.error(ex.getMessage());
+
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
@@ -43,6 +51,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
+
+        logger.error(ex.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }

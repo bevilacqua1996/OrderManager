@@ -4,9 +4,9 @@ import com.system.order.manager.exception.NoDataFoundException;
 
 public enum MovementStatusEnum {
 
-    PACKING(1, "packing"),
-    IN_TRANSIT(2, "in transit"),
-    DELIVERED(3, "delivered");
+    PACKING(1, "PACKING"),
+    IN_TRANSIT(2, "IN TRANSIT"),
+    DELIVERED(3, "DELIVERED");
 
     private int code;
     private String status;

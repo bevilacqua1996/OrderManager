@@ -3,10 +3,10 @@ package com.system.order.manager.exception;
 public class OrderAttributeClosedException extends RuntimeException{
 
     public OrderAttributeClosedException() {
-        super("Order already cosed");
+        super("Order already closed");
     }
 
     public OrderAttributeClosedException(String message) {
-        super("Order already cosed: " + message);
+        super("Order already closed: " + message);
     }
 }
