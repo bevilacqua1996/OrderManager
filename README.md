@@ -48,7 +48,7 @@ java -jar order.manager-0.0.1-SNAPSHOT.jar
 
 ## Application Context architecture
 
-![application_overview](https://github.com/bevilacqua1996/OrderManager/assets/18063196/0f7a6203-a1ba-4a95-9790-6860e515d021)
+![application_overview (1)](https://github.com/bevilacqua1996/OrderManager/assets/18063196/10224bde-038d-4008-8e06-962c44502b17)
 
 ## Order Status Concepts
 
