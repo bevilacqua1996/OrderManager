@@ -46,6 +46,10 @@ java -jar order.manager-0.0.1-SNAPSHOT.jar
 
 ![entity_diagram](https://github.com/bevilacqua1996/OrderManager/assets/18063196/ec960354-ec63-46fc-9a04-3681ed27d277)
 
+## Application Context architecture
+
+![application_overview](https://github.com/bevilacqua1996/OrderManager/assets/18063196/0f7a6203-a1ba-4a95-9790-6860e515d021)
+
 ## Order Status Concepts
 
 There are two main Order Status defined in the application:
