@@ -54,14 +54,14 @@ java -jar order.manager-0.0.1-SNAPSHOT.jar
 
 There are two main Order Status defined in the application:
 
-- 1. OPEN
-- 2. CLOSED
+- 1: OPEN
+- 2: CLOSED
 
 While an order is OPEN, Stock movement can vary between three status:
 
-- 1. PACKING
-- 2. IN TRANSIT
-- 3. DELIVERED
+- 1: PACKING
+- 2: IN TRANSIT
+- 3: DELIVERED
 
 Once the product is DELIVERED, the Order is CLOSED, and user is notified through an email that the order is closed.
 
