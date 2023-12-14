@@ -4,10 +4,11 @@
 name: Maven Package
 
 on:
-  pull_request:
-    # Sequence of patterns matched against refs/heads
+  push:
     branches:
-      - main
+      - 'main'
+    paths:
+      - '**pom.xml'
 
 jobs:
   build:
