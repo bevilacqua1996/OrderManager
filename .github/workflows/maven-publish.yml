@@ -5,12 +5,12 @@ name: Maven Package
 
 on:
   pull_request:
-    # Sequence of patterns matched against refs/heads
-    branches:
-      - develop
+    types:
+      - labeled
 
 jobs:
   build:
+    if: ${{ github.event.label.name == 'queued' }}
 
     runs-on: ubuntu-latest
     permissions:
