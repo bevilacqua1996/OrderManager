@@ -3,8 +3,6 @@ FROM alpine:3.19.0
 LABEL maintainer="Bruno Nascimento <brunoenig@hotmail.com>"
 LABEL description="Docker image for Order Manager Application."
 
-EXPOSE 8080/tcp
-
 RUN  apk update \
   && apk upgrade \
   && apk add openjdk8 \
@@ -23,6 +21,8 @@ ARG SPRING_MAIL_PASSWORD
 ENV SPRING_MAIL_PASSWORD ${SPRING_MAIL_PASSWORD}
 
 COPY target/*.jar /orderSystem/order_manager.jar
+
+EXPOSE 8080/tcp
 
 CMD ["sh"]
 ENTRYPOINT ["java", "-jar", "orderSystem/order_manager.jar"]
