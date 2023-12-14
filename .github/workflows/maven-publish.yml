@@ -53,4 +53,4 @@ jobs:
           SPRING_MAIL_PASSWORD=${{ secrets.SPRING_MAIL_PASSWORD }}
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/order-manager:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/order-manager:snapshot
