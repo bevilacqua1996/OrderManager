@@ -128,4 +128,12 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub bevilacqua1996 Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/bevilacqua1996/OrderManager</url>
+		</repository>
+	</distributionManagement>
+
 </project>
