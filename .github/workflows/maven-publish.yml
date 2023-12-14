@@ -33,6 +33,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
 
   image_build_and_push:
+    needs: build_and_upload_artifact
 
     runs-on: ubuntu-latest
     permissions:
