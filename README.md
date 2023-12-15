@@ -8,7 +8,11 @@
 - Log4J2;
 - Maven.
 
-## How to run
+## Docker image available on docker Hub
+
+[orderManager Tags on Docker Hub](https://hub.docker.com/r/bevilacqua96/order-manager/tags)
+
+## How to run locally
 
 As the database uses local _postgresql server_, in order to run the application, you have to install postgresql on your local machine.
 [Postgres Downloads Windows](https://www.postgresql.org/download/windows/)
@@ -40,6 +44,25 @@ Run the command below in order to start the application.
 
 ```
 java -jar order.manager-0.0.1-SNAPSHOT.jar
+```
+
+## Running with container
+
+You can also _pull_ the docker image generated in order to test features and endpoints of application.
+
+**Pre-requisite**: Install docker ![Install docker](https://docs.docker.com/engine/install/)
+
+```
+docker pull bevilacqua96/order-manager:latest
+docker run -p 127.0.0.1:32275:8080/tcp bevilacqua96/order-manager:latest
+```
+
+On that command above0 we have port 32275 exposed, so any of the application endpoints will be query through the port 32275.
+
+Example:
+
+```
+http://localhost:32275/order-system/items
 ```
 
 ## Entities Diagram
