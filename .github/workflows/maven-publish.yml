@@ -78,11 +78,25 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/order-manager:latest
 
   tag_repo:
+    needs: image_build_and_push
     name: Get runner id and tag the current code snapshot
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Tag and push current repo code
-        run: |
-          git tag ${{github.run_id}}
-          git push origin ${{github.run_id}}
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: Install GitVersion
+          uses: gittools/actions/gitversion/setup@v0.9.7
+          with:
+            versionSpec: '5.x'
+        - name: Determine Version
+          uses: gittools/actions/gitversion/execute@v0.9.7
+        - name: Display SemVer
+          run: |
+            echo "SemVer: $GITVERSION_SEMVER" && echo "$version" && echo "$major.$minor.$patch"
+        - name: Create git tag
+          run: |
+            git tag $GITVERSION_SEMVER
+        - name: Push git tag
+          run: git push origin $GITVERSION_SEMVER
