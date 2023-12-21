@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.system</groupId>
 	<artifactId>order.manager</artifactId>
-	<version>1.1.3</version>
+	<version>1.1.4</version>
 	<name>order.manager</name>
 	<description>Simple Order Manger System</description>
 	<properties>
