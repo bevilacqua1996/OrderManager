@@ -79,7 +79,6 @@ jobs:
 
   tag_repo:
     needs: image_build_and_push
-    name: Get runner id and tag the current code snapshot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
