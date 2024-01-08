@@ -147,3 +147,7 @@ POST
 - **description:** creates new stock movements for a specific order registering the status as the order evolves. If order is closed, send an email at the end of operation to user who requested the order.
 
 For more information, the API contract is on _/src/main/resources/**orderManager.yaml**_
+
+## More about
+
+You can check how the CI process of this project was built in Substack article. Check on ![Substack Article]([https://docs.docker.com/engine/install/](https://open.substack.com/pub/bevilacqua96/p/building-your-own-docker-image-using?r=2je0lv&utm_campaign=post&utm_medium=web)https://open.substack.com/pub/bevilacqua96/p/building-your-own-docker-image-using?r=2je0lv&utm_campaign=post&utm_medium=web)
