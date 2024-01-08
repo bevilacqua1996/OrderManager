@@ -150,4 +150,4 @@ For more information, the API contract is on _/src/main/resources/**orderManager
 
 ## More about
 
-You can check how the CI process of this project was built in Substack article. Check on [Substack Article](https://open.substack.com/pub/bevilacqua96/p/building-your-own-docker-image-using?r=2je0lv&utm_campaign=post&utm_medium=web)
+You see more about this application and even how the CI process of this project was built in Substack article. Check on [Substack Article](https://open.substack.com/pub/bevilacqua96/p/building-your-own-docker-image-using?r=2je0lv&utm_campaign=post&utm_medium=web)
