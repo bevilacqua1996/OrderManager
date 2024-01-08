@@ -50,7 +50,7 @@ java -jar order.manager-0.0.1-SNAPSHOT.jar
 
 You can also _pull_ the docker image generated in order to test features and endpoints of application.
 
-**Pre-requisite**: Install docker ![Install docker](https://docs.docker.com/engine/install/)
+**Pre-requisite**: Install docker [Install docker](https://docs.docker.com/engine/install/)
 
 ```
 docker pull bevilacqua96/order-manager:latest
@@ -150,4 +150,4 @@ For more information, the API contract is on _/src/main/resources/**orderManager
 
 ## More about
 
-You can check how the CI process of this project was built in Substack article. Check on ![Substack Article](https://open.substack.com/pub/bevilacqua96/p/building-your-own-docker-image-using?r=2je0lv&utm_campaign=post&utm_medium=web)
+You can check how the CI process of this project was built in Substack article. Check on [Substack Article](https://open.substack.com/pub/bevilacqua96/p/building-your-own-docker-image-using?r=2je0lv&utm_campaign=post&utm_medium=web)
