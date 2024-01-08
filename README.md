@@ -2,7 +2,7 @@
 
 ## Technologies Used
 
-- Spring-Boot 2.7.16;
+- Spring-Boot 2.7.18;
 - Spring JPA;
 - Postgresql;
 - Log4J2;
