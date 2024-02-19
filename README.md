@@ -2,7 +2,7 @@
 
 ## Technologies Used
 
-- Spring-Boot 2.7.16;
+- Spring-Boot 2.7.18;
 - Spring JPA;
 - Postgresql;
 - Log4J2;
@@ -50,7 +50,7 @@ java -jar order.manager-0.0.1-SNAPSHOT.jar
 
 You can also _pull_ the docker image generated in order to test features and endpoints of application.
 
-**Pre-requisite**: Install docker ![Install docker](https://docs.docker.com/engine/install/)
+**Pre-requisite**: Install docker [Install docker](https://docs.docker.com/engine/install/)
 
 ```
 docker pull bevilacqua96/order-manager:latest
@@ -147,3 +147,7 @@ POST
 - **description:** creates new stock movements for a specific order registering the status as the order evolves. If order is closed, send an email at the end of operation to user who requested the order.
 
 For more information, the API contract is on _/src/main/resources/**orderManager.yaml**_
+
+## More about
+
+You see more about this application and even how the CI process of this project was built in Substack article. Check on [Substack Article](https://open.substack.com/pub/bevilacqua96/p/building-your-own-docker-image-using?r=2je0lv&utm_campaign=post&utm_medium=web)
